@@ -36,11 +36,11 @@ class App extends Component {
 
   submitTodo(e) {
     e.preventDefault();
-
+    const uniqueId = new Date().valueOf();
     const currentList = [...this.state.list];
 
     const itemToPush = {
-      id: this.state.list.length,
+      id: uniqueId,
       todo: this.state.todo,
       priority: this.state.priority
     };
@@ -53,10 +53,15 @@ class App extends Component {
   }
 
   // get the id of the item to delete and delete from list here, then update state list
-  deleteTodo() {
+  deleteTodo(theItem) {
     const currentList = [...this.state.list];
     console.log(`deleteTodo runs: `, currentList);
-
+    console.log(`theItem: `, theItem);
+    currentList.splice(theItem, 1);
+    console.log('currentList after delete: ', currentList);
+    this.setState({
+      list: [...currentList]
+    });
   }
 
   render() {
@@ -71,7 +76,7 @@ class App extends Component {
         <hr className='col-sm-10'/>
         <div className='row'>
           <AddItem onTheClick={this.submitTodo} todoInput={this.updateTextValue} selectPriority={this.updatePriorityValue}></AddItem>
-          <List list={this.state.list} deleteItem={() => this.deleteTodo()}></List>
+          <List list={this.state.list} deleteItem={(item) => this.deleteTodo(item)}></List>
         </div>
       </div>
     );

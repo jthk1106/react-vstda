@@ -22,7 +22,7 @@ class Item extends Component {
             <button type="button" className="btn btn-default list-item-btns ">
               <i className="fas fa-edit"></i>
             </button>
-            <button type="button" className="btn btn-default list-item-btns" onClick={this.props.trashButton} value={this.props.id}>
+            <button type="button" className="btn btn-default list-item-btns" onClick={this.props.propToHandleTrashClick} value={this.props.id}>
               <i className="fas fa-trash-alt"></i>
             </button>
           </span>

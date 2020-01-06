@@ -12,38 +12,22 @@ class List extends Component {
       todoItems: []
     };
 
-    this.updateTrashItem = this.updateTrashItem.bind(this);
-    this.trashThisItem = this.trashThisItem.bind(this);
+    this.phunctionToHandleTrashClick = this.phunctionToHandleTrashClick.bind(this);
   }
 
   // list should either show a message to get started adding todos, or it should display the todos
   // new items will be coming in from sibling AddItem, which should be passed down here as props from App
 
-  updateTrashItem(itemToTrash) {
-    console.log(`trashItem!`, itemToTrash);
-    this.setState({
-      deleteItem: itemToTrash
-    });
-    // const list = this.props.list;
-    // console.log('list from trashItem(): ', list);
-    // const updatedList = list.filter(listItem => listItem.id !== itemToTrash);
-    // console.log(`updatedList: `, updatedList);
-    // this.setState({
-    //   deletedList: updatedList
-    // });
-  }
-
-  trashThisItem(item) {
-    console.log('trashThisItem(), item: ', item);
-    this.setState({
-      deleteItem: item
-    });
+  phunctionToHandleTrashClick(item) {
+    console.log('phunction(), item: ', item);
+    console.log(`props: `, this.props);
+    this.props.deleteItem(item);
   }
 
   render() {
     const list = this.props.list;
 
-    const mappedList = list.map(listItem => <Item key={listItem.id} id={listItem.id} todo={listItem.todo} priority={listItem.priority} trashButton={this.trashThisItem} />);
+    const mappedList = list.map(listItem => <Item key={listItem.id} id={listItem.id} todo={listItem.todo} priority={listItem.priority} propToHandleTrashClick={() => this.phunctionToHandleTrashClick(listItem.id)} />);
 
     const emptyList = '<div>The list is empty!</div>';
 
