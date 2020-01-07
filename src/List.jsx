@@ -12,22 +12,21 @@ class List extends Component {
       todoItems: []
     };
 
-    this.phunctionToHandleTrashClick = this.phunctionToHandleTrashClick.bind(this);
+    this.handleTrashClick = this.handleTrashClick.bind(this);
   }
 
   // list should either show a message to get started adding todos, or it should display the todos
   // new items will be coming in from sibling AddItem, which should be passed down here as props from App
 
-  phunctionToHandleTrashClick(item) {
-    console.log('phunction(), item: ', item);
-    console.log(`props: `, this.props);
+  handleTrashClick(item) {
+    console.log('handleTrashclick runs, item: ', item);
     this.props.deleteItem(item);
   }
 
   render() {
     const list = this.props.list;
 
-    const mappedList = list.map(listItem => <Item key={listItem.id} id={listItem.id} todo={listItem.todo} priority={listItem.priority} propToHandleTrashClick={() => this.phunctionToHandleTrashClick(listItem.id)} />);
+    const mappedList = list.map(listItem => <Item key={listItem.id} id={listItem.id} todo={listItem.todo} priority={listItem.priority} trashClick={() => this.handleTrashClick(listItem.id)} editClick={() => this.handleEditClick()} />);
 
     const emptyList = '<div>The list is empty!</div>';
 

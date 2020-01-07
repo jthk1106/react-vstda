@@ -55,12 +55,9 @@ class App extends Component {
   // get the id of the item to delete and delete from list here, then update state list
   deleteTodo(theItem) {
     const currentList = [...this.state.list];
-    console.log(`deleteTodo runs: `, currentList);
-    console.log(`theItem: `, theItem);
-    currentList.splice(theItem, 1);
-    console.log('currentList after delete: ', currentList);
+    const deleteList = currentList.filter(item => item.id !== theItem);
     this.setState({
-      list: [...currentList]
+      list: [...deleteList]
     });
   }
 

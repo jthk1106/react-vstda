@@ -21,9 +21,9 @@ class AddItem extends Component {
                 <label className="font-weight-bold">How much of a priority is this?</label>
                 <select className="form-control" name="select-priority" onChange={this.props.selectPriority}>
                   <option>Select option</option>
-                  <option value="high">High</option>
-                  <option value="normal">Normal</option>
-                  <option value="low">Low</option>
+                  <option value="3">High</option>
+                  <option value="2">Normal</option>
+                  <option value="1">Low</option>
                 </select>
               </div>
             </div>
