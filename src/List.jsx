@@ -28,7 +28,8 @@ class List extends Component {
     return (
       <li className="list-group-item list-group-item-primary">
         <div className="row">
-          Welcome to Very Simple To Do App
+          <span className="col-12 empty-list-msg">Welcome to Very Simple To Do App</span>
+          <span className="col-12">Get started by adding an item</span>
         </div>
       </li>
     );
@@ -45,16 +46,6 @@ class List extends Component {
         <ul className="list-group list-body">
           <li className="list-group-item list-header">View Todos</li>
           {displayList}
-          <div className="list-group tab-content" id="myList" role="tablist">
-            <a className="list-group-item list-group-item-action" data-toggle="list" href="#home" role="tab">Home</a>
-            <div className="tab-pane" id="home" role="tabpanel">HOME</div>
-            <a className="list-group-item list-group-item-action" data-toggle="list" href="#profile" role="tab">Profile</a>
-            <div className="tab-pane" id="profile" role="tabpanel">PROFILE</div>
-            <a className="list-group-item list-group-item-action" data-toggle="list" href="#messages" role="tab">Messages</a>
-            <div className="tab-pane" id="messages" role="tabpanel">MESSAGES</div>
-            <a className="list-group-item list-group-item-action" data-toggle="list" href="#settings" role="tab">Settings</a>
-            <div className="tab-pane" id="settings" role="tabpanel">SETTINGS</div>
-          </div>
         </ul>
       </div>
     );
