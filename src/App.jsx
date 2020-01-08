@@ -16,6 +16,7 @@ class App extends Component {
     this.updatePriorityValue = this.updatePriorityValue.bind(this);
     this.submitTodo = this.submitTodo.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
+    this.editTodo = this.editTodo.bind(this);
   }
 
   updateTextValue(e) {
@@ -61,6 +62,21 @@ class App extends Component {
     });
   }
 
+  editTodo(theItem) {
+    console.log('editTodo: ', theItem);
+    const currentList = [...this.state.list];
+    const editList = currentList.map((item) => {
+      if(theItem.id === item.id) {
+        return theItem;
+      }
+      return item;
+    });
+    console.log('editList: ', editList);
+    this.setState({
+      list: [...editList]
+    });
+  }
+
   render() {
     console.log(`this.state.list from render: ${this.state.list}, Keys: ${Object.keys(this.state.list)}`)
     return (
@@ -73,7 +89,7 @@ class App extends Component {
         <hr className='col-sm-10'/>
         <div className='row'>
           <AddItem onTheClick={this.submitTodo} todoInput={this.updateTextValue} selectPriority={this.updatePriorityValue}></AddItem>
-          <List list={this.state.list} deleteItem={(item) => this.deleteTodo(item)}></List>
+          <List list={this.state.list} deleteItem={(item) => this.deleteTodo(item)} editItem={(item) => this.editTodo(item)}></List>
         </div>
       </div>
     );

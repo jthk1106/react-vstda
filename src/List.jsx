@@ -8,23 +8,47 @@ class List extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      deleteItem: '',
-      todoItems: []
+      editPriority: '',
+      editInput: ''
+      // deleteItem: '',
+      // todoItems: []
     };
 
     this.handleTrashClick = this.handleTrashClick.bind(this);
-    this.listEmpty = this.listEmpty.bind(this);
+    this.ifListEmpty = this.ifListEmpty.bind(this);
+    this.editPriority = this.editPriority.bind(this);
+    this.editInput = this.editInput.bind(this);
   }
 
-  // list should either show a message to get started adding todos, or it should display the todos
-  // new items will be coming in from sibling AddItem, which should be passed down here as props from App
-
   handleTrashClick(item) {
-    console.log('handleTrashclick runs, item: ', item);
     this.props.deleteItem(item);
   }
 
-  listEmpty() {
+  editPriority(e) {
+    console.log('priority: ', e.target.value);
+    this.setState({
+      editPriority: e.target.value
+    });
+  }
+
+  editInput(e) {
+    console.log('input: ', e.target.value);
+    this.setState({
+      editInput: e.target.value
+    });
+  }
+
+  handleEditSubmit(item) {
+    const editedItem = {
+      id: item.id,
+      todo: this.state.editInput,
+      priority: this.state.editPriority
+    };
+
+    this.props.editItem(editedItem);
+  }
+
+  ifListEmpty() {
     return (
       <li className="list-group-item list-group-item-primary">
         <div className="row">
@@ -37,8 +61,16 @@ class List extends Component {
 
   render() {
     const list = this.props.list;
-    const mappedList = list.map(listItem => <Item key={listItem.id} id={listItem.id} todo={listItem.todo} priority={listItem.priority} trashClick={() => this.handleTrashClick(listItem.id)} editClick={() => this.handleEditClick()} />);
-    const emptyList = this.listEmpty();
+    const mappedList = list.map(listItem => <Item
+                                              key={listItem.id}
+                                              thisTodo={listItem}
+                                              trashClick={() => this.handleTrashClick(listItem.id)}
+                                              editClick={() => this.handleEditClick()}
+                                              editSubmit={() => this.handleEditSubmit(listItem)}
+                                              editSelectPriority={this.editPriority}
+                                              editTodoInput={this.editInput}
+                                            />);
+    const emptyList = this.ifListEmpty();
     const displayList = list.length === 0 ? emptyList : mappedList;
 
     return (
