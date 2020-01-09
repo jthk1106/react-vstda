@@ -43,7 +43,8 @@ class App extends Component {
     const itemToPush = {
       id: uniqueId,
       todo: this.state.todo,
-      priority: this.state.priority
+      priority: this.state.priority,
+      completed: false
     };
 
     currentList.push(itemToPush);

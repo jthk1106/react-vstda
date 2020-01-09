@@ -15,11 +15,11 @@ class AddItem extends Component {
             <div className="card-body text-dark">
               <div className="form-group">
                 <label className="font-weight-bold">I want to..</label>
-                <textarea className="form-control" name="textarea-todo" onChange={this.props.todoInput} id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea className="form-control create-todo-text" name="textarea-todo" onChange={this.props.todoInput} id="exampleFormControlTextarea1" rows="3"></textarea>
               </div>
               <div className="form-group">
                 <label className="font-weight-bold">How much of a priority is this?</label>
-                <select className="form-control" name="select-priority" onChange={this.props.selectPriority}>
+                <select className="form-control create-todo-priority" name="select-priority" onChange={this.props.selectPriority}>
                   <option>Select option</option>
                   <option value="3">High</option>
                   <option value="2">Normal</option>
@@ -28,7 +28,7 @@ class AddItem extends Component {
               </div>
             </div>
             <div className="card-footer text-muted">
-              <button type="submit" className="btn btn-success btn-block btn-lg" onClick={this.props.onTheClick}>Add</button>
+              <button type="submit" className="btn btn-success btn-block btn-lg create-todo" onClick={this.props.onTheClick}>Add</button>
             </div>
           </div>
         </form>

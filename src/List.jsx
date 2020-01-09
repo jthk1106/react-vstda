@@ -9,7 +9,8 @@ class List extends Component {
     super(props);
     this.state = {
       editPriority: '',
-      editInput: ''
+      editInput: '',
+      checked: ''
       // deleteItem: '',
       // todoItems: []
     };
@@ -18,6 +19,7 @@ class List extends Component {
     this.ifListEmpty = this.ifListEmpty.bind(this);
     this.editPriority = this.editPriority.bind(this);
     this.editInput = this.editInput.bind(this);
+    this.handleCheckbox = this.handleCheckbox.bind(this);
   }
 
   handleTrashClick(item) {
@@ -42,10 +44,17 @@ class List extends Component {
     const editedItem = {
       id: item.id,
       todo: this.state.editInput,
-      priority: this.state.editPriority
+      priority: this.state.editPriority,
+      completed: this.state.checked
     };
 
     this.props.editItem(editedItem);
+  }
+
+  handleCheckbox(e) {
+    this.setState({
+      checked: e.target.checked
+    });
   }
 
   ifListEmpty() {
@@ -69,6 +78,7 @@ class List extends Component {
                                               editSubmit={() => this.handleEditSubmit(listItem)}
                                               editSelectPriority={this.editPriority}
                                               editTodoInput={this.editInput}
+                                              checkedStatus={this.handleCheckbox}
                                             />);
     const emptyList = this.ifListEmpty();
     const displayList = list.length === 0 ? emptyList : mappedList;
